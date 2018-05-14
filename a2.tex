@@ -11,7 +11,7 @@
 \usepackage{fancyhdr}
 \usepackage{enumitem}
 \usepackage{listings}
-\usepackage{rotating}
+\usepackage[nocomma]{optidef}
 \setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
 \setlength{\parindent}{0em}
@@ -75,21 +75,63 @@ Therefore \(z_2 - z_1 \leq 0\), meaning switching to shortest weighted processin
 \section*{Question 2}
 \begin{enumerate}
 	\item \text{}\\
-	\includegraphics[width=0.7\linewidth]{q2}
+	\includegraphics[width=1\linewidth]{q2}
 
 	
 	\item 1/\(r_j\)/\(C_\text{max}\)
 \end{enumerate}
 
 \section*{Question 3}
-\includegraphics[width=0.7\linewidth]{q3}\\
+\includegraphics[width=1\linewidth]{q3}\\
 Maximum lateness = 21\\
 Order: 1, 2, 3, 6, 4, 8, 7, 10, 5, 9
 \newpage	
-\begin{sidewaysfigure}
+\thispagestyle{empty}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{q3_2}
-\end{sidewaysfigure}
+	\includegraphics[height=1.1\textheight]{q3_2}
+\end{figure}
+\newpage
+
+\section*{Question 4}
+Let \(t_j\) be the time job j starts.\\
+Let \(x_{ij}\) be 1 if job i precedes job j, 0 otherwise.\\
+Let \(T_j\) be the tardiness of job j.\\
+Let other variables be as defined as in the notes/assignment.\\
+
+\begin{mini*}
+	{}{\sum T_i}
+	{\label{eq:Example1}}{}
+	\addConstraint{x_{ij} + x_{ji}}{=1 \quad}{\forall i, j, i \neq j}
+	\addConstraint{t_i - t_j + Mx_{ij}}{\geq p_j \quad}{\forall i, j}
+	\addConstraint{t_j - t_i}{\geq p_i \quad}{\forall j \in S_i, \forall i}
+	\addConstraint{t_i}{\geq r_i \quad}{\forall i}
+	\addConstraint{T_i - t_i}{\geq p_i - d_i \quad}{\forall i}
+	\addConstraint{}{}{}
+	\addConstraint{t_i}{\geq 0, \text{  integer  } \quad}{\forall i}
+	\addConstraint{T_i}{\geq 0, \text{  integer  } \quad}{\forall i}
+	\addConstraint{x_{ij}}{\,\, \text{  binary  } \quad}{\forall i, j}
+\end{mini*}
+
+\section*{Question 5}
+\includegraphics[width=0.8\linewidth]{q5}\\
+\newpage
+\includegraphics[width=1\linewidth]{q5_2}\\ \\
+Objective = 87
+
+\section*{Question 6}
+Score:
+\begin{equation*}
+	\bigg[\frac{1}{r_j} + \frac{1}{\max(\text{SETUP, }0.5)}\bigg] * \frac{1}{\max(d_j-p_j-t, 3)} * w_j
+\end{equation*}
+where SETUP is equal to the setup cost between the current job and job j.\\
+Final score: 176
+\newpage
+\thispagestyle{empty}
+\begin{figure}
+	\centering
+	\includegraphics[height=0.8\textheight, angle=90, origin=c]{q6}
+\end{figure}
 
 \end{document}
 
